@@ -2,7 +2,16 @@ kind: Pod
 metadata:
   name: windows
 spec:
-  containers:
+ tolerations:
+  - effect: NoSchedule
+    key: CriticalAddonsOnly
+    operator: Equal
+    value: "true"
+  - effect: NoSchedule
+    key: UserWorkload
+    operator: Equal
+    value: "true"
+    containers:
   - name: jnlp
     image: jenkins/jnlp-agent:latest-windows
     tty: true
